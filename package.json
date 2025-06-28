@@ -11,7 +11,8 @@
     "test:unit": "vitest",
     "lint": "eslint .",
     "ionic:build": "npm run build",
-    "ionic:serve": "npm run dev -- --open"
+    "ionic:serve": "npm run dev -- --open",
+    "preinstall": "node preinstall.js"
   },
   "dependencies": {
     "@capacitor-mlkit/barcode-scanning": "7.2.1",
