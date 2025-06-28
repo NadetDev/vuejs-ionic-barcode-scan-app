@@ -12,6 +12,14 @@ import {
   IonFooter,
   IonFabButton,
   IonIcon,
+  IonList,
+  IonItem,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonNote,
+  IonInput,
+  IonLabel,
 } from '@ionic/vue';
 
 const isSupported = ref(false);
@@ -57,7 +65,31 @@ const presentAlert = async (hdr: string, msg: string) => {
         ><ion-title>NadetDev Barcode Scanner</ion-title></ion-toolbar
       ></ion-header
     >
-    <ion-content>{{ barcodeList }} </ion-content>
+    <ion-content>
+      <ion-list v-if="barcodeList.length > 0">
+        <ion-item v-for="barcode in barcodeList" :key="barcode.rawValue">
+          <io-grid>
+            <ion-row>
+              <ion-col>
+                <ion-input
+                  type="text"
+                  :value="barcode.rawValue"
+                  :readonly="true"
+                ></ion-input> </ion-col
+            ></ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col
+                ><ion-label>Format</ion-label
+                ><ion-note>{{ barcode.format }}</ion-note></ion-col
+              ><ion-col>
+                <ion-label>Type</ion-label>
+                <ion-note>{{ barcode.valueType }}</ion-note>
+              </ion-col>
+            </ion-row>
+          </io-grid>
+        </ion-item>
+      </ion-list>
+    </ion-content>
     <ion-footer class="ion-padding">
       <ion-fab-button
         style="margin: auto"
